@@ -28,11 +28,29 @@ connect()
     fi
 }
 
+list()
+{
+    header=" %-10s %8s\n"
+    format=" %-10s %08s\n"
+
+    printf "$header" "HOST" "IP ADDRESS"
+
+    while IFS="=" read -r host ip
+    do 
+        printf "$format" \
+        $host $ip 
+    done < $CONFIG
+}
+
 while :
 do
 case $1 in
     -h|--help)
         echo "help"
+        exit
+        ;;
+    -l|--list)
+        list
         exit
         ;;
     -?*)
