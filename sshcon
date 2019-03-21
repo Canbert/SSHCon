@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#Config File
+CONFIG=./sshcon.cfg
+
+if [ $1 ]
+    then
+    #Split the line in config to host and ip
+    while IFS="=" read -r host ip
+    do 
+        if [ $1 == $host ]
+        then
+            echo "Host $host found"
+            echo "Attempting to connect to $ip"
+            break
+        fi
+    done < $CONFIG
+    #If the host exists in the config SSH to the ip
+    if [ ! -z $ip ]
+    then
+        ssh $ip
+    else
+        echo "Host doesn't exist"
+    fi
+
+fi
+
