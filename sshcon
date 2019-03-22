@@ -42,11 +42,19 @@ list()
     done < $CONFIG
 }
 
+help()
+{
+    printf "Usage: sshcon [OPTION]... [HOST]...\n"
+    printf " %s %s %s\n" \
+    "-h," "--help" "display this help menu" \
+    "-l," "--list" "show a list of the hosts from the config file"
+}
+
 while :
 do
 case $1 in
     -h|--help)
-        echo "help"
+        help
         exit
         ;;
     -l|--list)
@@ -62,7 +70,7 @@ case $1 in
         then
             connect $1
         else
-            echo "Help"
+            help
         fi
         break
         ;;
