@@ -45,7 +45,7 @@ list()
 help()
 {
     printf "Usage: sshcon [OPTION]... [HOST]...\n"
-    printf " %s %s %s\n" \
+    printf " %s %s\t %s\n" \
     "-h," "--help" "display this help menu" \
     "-l," "--list" "show a list of the hosts from the config file"
 }
