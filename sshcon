@@ -58,8 +58,14 @@ case $1 in
         break
         ;;
     *)
-        connect $1
+        if [ ! -z $1 ]
+        then
+            connect $1
+        else
+            echo "Help"
+        fi
         break
+        ;;
 esac
 done
 
