@@ -7,24 +7,21 @@ connect()
 {
     if [ $1 ]
     then
+        #Checks for  "#", spaces, and tabs to ignore them
         #Split the line in config to host and ip
+        egrep -v '(^#|^\s*$|^\s*\t*#)' $CONFIG |
         while IFS="=" read -r host ip
         do 
             if [ $1 == $host ]
             then
                 echo "Host $host found"
                 echo "Attempting to connect to $ip"
+                ssh -T $ip
                 break
+            else
+                echo "Host doesn't exist, use -l or --list to see hosts"
             fi
-        done < $CONFIG
-        #If the host exists in the config SSH to the ip
-        if [ ! -z $ip ]
-        then
-            ssh $ip
-        else
-            echo "Host doesn't exist"
-        fi
-
+        done
     fi
 }
 
@@ -35,11 +32,14 @@ list()
 
     printf "$header" "HOST" "IP ADDRESS"
 
+    #Checks for  "#", spaces, and tabs to ignore them
+    #Split the line in config to host and ip
+    egrep -v '(^#|^\s*$|^\s*\t*#)' $CONFIG |
     while IFS="=" read -r host ip
     do 
         printf "$format" \
         $host $ip 
-    done < $CONFIG
+    done
 }
 
 help()
