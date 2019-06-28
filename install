@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]
+    then 
+        echo "Please run as root in order to install"
+        exit
+    else
+        echo "Installing SSHCon"
+        rsync ./sshcon /usr/local/bin
+        echo "Creating config for current user"
+        rsync ./sshcon.cfg ~/.config/sshcon/
+        echo "Installation complete"
+fi
