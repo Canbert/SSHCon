@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]
+    then 
+        echo "Please run as root in order to uninstall"
+        exit
+    else
+        echo "Removing SSHCon"
+        rm /usr/local/bin/sshcon
+        echo "Removing config for current user"
+        rm -r ~/.config/sshcon/
+        echo "Uninstall complete"
+fi
