@@ -8,6 +8,6 @@ if [ "$EUID" -ne 0 ]
         echo "Installing SSHCon"
         rsync ./sshcon /usr/local/bin
         echo "Creating config for current user"
-        rsync ./sshcon.cfg ~/.config/sshcon/
+        rsync ./hosts ~/.config/sshcon/
         echo "Installation complete"
 fi

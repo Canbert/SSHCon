@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Config File
-CONFIG=~/.config/sshcon/sshcon.cfg
+CONFIG=~/.config/sshcon/hosts
 
 connect()
 {
